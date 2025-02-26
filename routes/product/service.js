@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prismaClient.js";
 import Err from "./err.js";
-
-const prisma = new PrismaClient();
 
 const getProduct = async (req, res) => {
   console.log("product get 호출");

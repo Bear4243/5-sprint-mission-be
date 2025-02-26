@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prismaClient.js";
 import Err from "./err.js";
 import { assert } from "superstruct";
 import { validation } from "./structs.js";
-
-const prisma = new PrismaClient();
 
 const uploadComment = async (req, res) => {
   assert(req.body, validation); // 유효성 검사

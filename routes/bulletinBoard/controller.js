@@ -2,7 +2,10 @@ import express from "express";
 import service from "./service.js";
 
 const router = express.Router();
-// 게시글 쓰기
-router.post("/", service.uploadBulletinBoard);
+
+router.get("/", service.uploadBulletinBoard);
+router.post("/Register", service.uploadBulletinBoard);
+router.patch("/dd", service.updateBulletinBoard);
+router.delete("/ee", service.deleteBulletinBoard);
 
 export default router;
