@@ -1,4 +1,4 @@
-GET http://localhost:8000/bulletinBoard
+GET http://localhost:5432/bulletinBoard
 
 ###
 

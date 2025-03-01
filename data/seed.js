@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "../prismaClient.js";
 // import { faker } from '@faker-js/faker'; 다음에 써볼놈
-
-const prisma = new PrismaClient();
 
 async function main() {
   console.log("데이터가 들어간다");

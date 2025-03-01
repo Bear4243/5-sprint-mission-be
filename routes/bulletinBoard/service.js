@@ -1,31 +1,66 @@
-import prisma from "@/prismaClient.js";
-import Err from "./err.js";
+import prisma from "../../prismaClient.js";
 import { assert } from "superstruct";
 import { validation } from "./structs.js";
 
-const getBulletinBoard = async (req, res) => {
+const getBulletinBoard = async (req, res, next) => {
   try {
-    const { sort } = req.query;
-    // 기본값은 최신순(createdAt desc)
+    const { sort, cursor, limit } = req.query;
+    const take = parseInt(limit) || 4;
+
+    // 기본 정렬: 최신순(createdAt desc)
     let orderByOption = { createdAt: "desc" };
     if (sort === "like") {
       orderByOption = { like: "desc" };
     }
 
-    const data = await prisma.bulletinBoard.findMany({
+    const query = {
       include: {
-        comment: true, // 게시글의 댓글도 함께 불러옴 (선택사항)
-        user: true, // 작성자 정보도 포함
+        comment: true,
+        user: true,
       },
       orderBy: orderByOption,
-    });
-    res.json(data);
+      take: take + 1, // 한 페이지보다 한 개 더 불러옴
+    };
+
+    if (cursor) {
+      query.cursor = { id: cursor };
+      query.skip = 1;
+    }
+
+    const results = await prisma.bulletinBoard.findMany(query);
+
+    let nextCursor = null;
+    let data = results;
+    if (results.length > take) {
+      // 추가 항목이 있다면 다음 커서를 설정하고, 데이터 배열은 요청한 개수만 사용
+      nextCursor = results[take].id;
+      data = results.slice(0, take);
+    }
+
+    res.json({ data, nextCursor });
   } catch (err) {
-    Err(err, res);
+    // err 변수명으로 에러 객체 받음
+    next(err); // 에러 객체를 next에 전달
   }
 };
 
-const uploadBulletinBoard = async (req, res) => {
+const getTopBulletinBoard = async (req, res, next) => {
+  try {
+    const data = await prisma.bulletinBoard.findMany({
+      include: {
+        comment: true, // 게시글의 댓글도 함께 불러옴
+        user: true, // 작성자 정보도 포함
+      },
+      orderBy: { like: "desc" },
+      take: 3, // 상위 3개의 게시글만 선택
+    });
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const uploadBulletinBoard = async (req, res, next) => {
   assert(req.body, validation); // 유효성 검사
 
   const { id } = req.query;
@@ -43,13 +78,12 @@ const uploadBulletinBoard = async (req, res) => {
     });
     res.json(data);
   } catch (err) {
-    Err(err, res);
+    next(err);
   }
 };
 
-const updateBulletinBoard = async (req, res) => {
+const updateBulletinBoard = async (req, res, next) => {
   const { id } = req.params;
-  // 스키마의 필드명이 "contents"이므로 수정 시에도 이를 사용합니다.
   const { title, contents } = req.body;
 
   console.log("게시글 수정 시도:", id);
@@ -63,12 +97,11 @@ const updateBulletinBoard = async (req, res) => {
     console.log("게시글 수정 성공:", data);
     res.status(200).json(data); // 수정된 데이터를 응답으로 보냄
   } catch (err) {
-    console.error("게시글 수정 실패:", err);
-    Err(err, res); // 에러 처리
+    next(err);
   }
 };
 
-const deleteBulletinBoard = async (req, res) => {
+const deleteBulletinBoard = async (req, res, next) => {
   const { id } = req.params;
   console.log("게시글 삭제");
   try {
@@ -77,12 +110,13 @@ const deleteBulletinBoard = async (req, res) => {
     });
     res.sendStatus(204);
   } catch (err) {
-    Err(err, res);
+    next(err);
   }
 };
 
 const service = {
   getBulletinBoard,
+  getTopBulletinBoard,
   uploadBulletinBoard,
   updateBulletinBoard,
   deleteBulletinBoard,
