@@ -2,6 +2,11 @@ import prisma from "../../prismaClient.js";
 import { assert } from "superstruct";
 import { validation } from "./structs.js";
 
+const formatToYMD = (date) => {
+  if (!date) return "";
+  return new Date(date).toISOString().split("T")[0];
+};
+
 const formatBulletinBoard = (board) => ({
   ...board,
   updatedAt: formatToYMD(board.updatedAt),
