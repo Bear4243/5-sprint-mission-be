@@ -2,7 +2,18 @@ import prisma from "../prismaClient.js";
 // import { faker } from '@faker-js/faker'; 다음에 써볼놈
 
 async function main() {
-  console.log("데이터가 들어간다");
+  console.log("기존 데이터 초기화 시작");
+
+  // 순서 중요! 외래 키 제약 조건을 고려하여 자식 테이블부터 삭제
+  await prisma.comment.deleteMany();
+  await prisma.bulletinBoard.deleteMany();
+  await prisma.product.deleteMany();
+  await prisma.user.deleteMany();
+
+  console.log("기존 데이터 초기화 완료");
+
+  // 새 데이터 생성
+  console.log("새 데이터 추가 시작");
 
   // 유저 생성
   const user1 = await prisma.user.create({
