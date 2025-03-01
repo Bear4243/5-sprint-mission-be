@@ -23,7 +23,7 @@ model User {
   email         String          @unique
   nickName      String          @unique
   password      String          @unique
-  profileImg    String          @default("basic_img") // 프로필 이미지 있는거 같든데
+  profileImg    String? // 프로필 이미지 있는거 같든데
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   comment       Comment[]
