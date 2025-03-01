@@ -1,4 +1,4 @@
-import prisma from "@/prismaClient.js";
+import prisma from "../../prismaClient.js";
 
 // 테스트용 미들웨어
 const testUserMiddleware = async (req, res, next) => {
