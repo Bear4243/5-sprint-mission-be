@@ -15,6 +15,7 @@ datasource db {
 }
 
 /// npx prisma migrate dev
+//  npx prisma generate
 /// npx prisma studio
 
 /// 유저 정보 이미지는 모르니까 basicImg로 일단 통일
