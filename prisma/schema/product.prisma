@@ -1,7 +1,7 @@
 /// 상품
 model Product {
     id          String   @id @default(uuid())
-    img         String   @default("basicImg") // 상품 이미지
+    img         String   @default("default_img") // 상품 이미지
     title       String // 제목
     price       Int // 가격
     like        Int      @default(0) // 찜
