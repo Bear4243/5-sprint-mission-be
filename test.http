@@ -1,0 +1,9 @@
+GET http://localhost:8000/bulletinBoard
+
+###
+
+GET http://localhost:3000/api/comparison/search?keyword=
+
+###
+
+GET http://localhost:3000/api/companies/
