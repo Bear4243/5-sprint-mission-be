@@ -21,7 +21,6 @@ async function main() {
       email: "user1@example.com",
       nickName: "user1",
       password: "password123",
-      profileImg: "user1.jpg",
     },
   });
 
@@ -30,7 +29,6 @@ async function main() {
       email: "user2@example.com",
       nickName: "user2",
       password: "password456",
-      profileImg: "user2.jpg",
     },
   });
 
@@ -39,7 +37,6 @@ async function main() {
       email: "user3@example.com",
       nickName: "user3",
       password: "password789",
-      profileImg: "user3.jpg",
     },
   });
 
@@ -51,7 +48,6 @@ async function main() {
       like: 10,
       description: "최신 iPhone 15, 미개봉 제품",
       tags: "전자제품, 휴대폰",
-      img: "iphone15.jpg",
     },
   });
 
@@ -62,7 +58,6 @@ async function main() {
       like: 20,
       description: "M2 MacBook Pro 16인치",
       tags: "노트북, 애플",
-      img: "macbookpro.jpg",
     },
   });
 
@@ -71,7 +66,6 @@ async function main() {
     data: {
       title: "iPhone 15 중고 팝니다",
       contents: "사용한지 3개월 된 아이폰 15 판매합니다.",
-      img: "iphone_sale.jpg",
       like: 5,
       userId: user1.id,
     },
@@ -81,7 +75,6 @@ async function main() {
     data: {
       title: "MacBook Pro1 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 8,
       userId: user2.id,
     },
@@ -91,7 +84,6 @@ async function main() {
     data: {
       title: "MacBook Pro2 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 10,
       userId: user2.id,
     },
@@ -101,7 +93,6 @@ async function main() {
     data: {
       title: "MacBook Pro3 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 13,
       userId: user2.id,
     },
@@ -111,7 +102,6 @@ async function main() {
     data: {
       title: "MacBook Pro4 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 8,
       userId: user3.id,
     },
@@ -121,7 +111,6 @@ async function main() {
     data: {
       title: "MacBook Pro55555 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 19,
       userId: user3.id,
     },
@@ -131,7 +120,6 @@ async function main() {
     data: {
       title: "MacBook Pro666666 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 8,
       userId: user1.id,
     },
@@ -141,7 +129,6 @@ async function main() {
     data: {
       title: "MacBook Pro777777 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 20,
       userId: user1.id,
     },
@@ -151,7 +138,6 @@ async function main() {
     data: {
       title: "MacBook Pro888888 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 21,
       userId: user2.id,
     },
@@ -161,7 +147,6 @@ async function main() {
     data: {
       title: "MacBook Pro999999999 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 8,
       userId: user3.id,
     },
@@ -171,7 +156,6 @@ async function main() {
     data: {
       title: "MacBook Proaaaa 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 23,
       userId: user3.id,
     },
@@ -181,7 +165,6 @@ async function main() {
     data: {
       title: "MacBook Probbbbb 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
-      img: "macbook_sale.jpg",
       like: 40,
       userId: user2.id,
     },
