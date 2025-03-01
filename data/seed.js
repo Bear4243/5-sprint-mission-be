@@ -68,10 +68,110 @@ async function main() {
 
   const post2 = await prisma.bulletinBoard.create({
     data: {
-      title: "MacBook Pro 새제품 할인 판매",
+      title: "MacBook Pro1 새제품 할인 판매",
       contents: "맥북 프로 새 제품 할인 판매합니다.",
       img: "macbook_sale.jpg",
       like: 8,
+      userId: user2.id,
+    },
+  });
+
+  const post3 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro2 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 10,
+      userId: user2.id,
+    },
+  });
+
+  const post4 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro3 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 13,
+      userId: user2.id,
+    },
+  });
+
+  const post5 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro4 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 8,
+      userId: user3.id,
+    },
+  });
+
+  const post6 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro55555 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 19,
+      userId: user3.id,
+    },
+  });
+
+  const post7 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro666666 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 8,
+      userId: user1.id,
+    },
+  });
+
+  const post8 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro777777 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 20,
+      userId: user1.id,
+    },
+  });
+
+  const post9 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro888888 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 21,
+      userId: user2.id,
+    },
+  });
+
+  const post10 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Pro999999999 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 8,
+      userId: user3.id,
+    },
+  });
+
+  const post11 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Proaaaa 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 23,
+      userId: user3.id,
+    },
+  });
+
+  const post12 = await prisma.bulletinBoard.create({
+    data: {
+      title: "MacBook Probbbbb 새제품 할인 판매",
+      contents: "맥북 프로 새 제품 할인 판매합니다.",
+      img: "macbook_sale.jpg",
+      like: 40,
       userId: user2.id,
     },
   });
@@ -88,6 +188,30 @@ async function main() {
   await prisma.comment.create({
     data: {
       contents: "댓글2",
+      userId: user1.id,
+      WritingId: post1.id,
+    },
+  });
+
+  await prisma.comment.create({
+    data: {
+      contents: "댓글3",
+      userId: user2.id,
+      WritingId: post3.id,
+    },
+  });
+
+  await prisma.comment.create({
+    data: {
+      contents: "댓글4",
+      userId: user3.id,
+      WritingId: post2.id,
+    },
+  });
+
+  await prisma.comment.create({
+    data: {
+      contents: "댓글5",
       userId: user1.id,
       WritingId: post2.id,
     },
