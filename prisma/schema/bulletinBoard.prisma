@@ -3,7 +3,7 @@ model BulletinBoard {
     id        String    @id @default(uuid())
     title     String
     contents  String // 게시글 내용
-    img       String    @default("basicImg") // 게시글 이미지
+    img       String    @default("default_img") // 게시글 이미지
     like      Int       @default(0) // 찜? 좋아요 받은 갯수
     createdAt DateTime  @default(now())
     updatedAt DateTime  @updatedAt
