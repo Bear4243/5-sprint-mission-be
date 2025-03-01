@@ -2,6 +2,11 @@ import prisma from "../../prismaClient.js";
 import { assert } from "superstruct";
 import { validation } from "./structs.js";
 
+const formatBulletinBoard = (board) => ({
+  ...board,
+  updatedAt: formatToYMD(board.updatedAt),
+});
+
 const getBulletinBoard = async (req, res, next) => {
   try {
     const { sort, cursor, limit } = req.query;
@@ -29,12 +34,13 @@ const getBulletinBoard = async (req, res, next) => {
 
     const results = await prisma.bulletinBoard.findMany(query);
 
+    const formattedResults = results.map(formatBulletinBoard);
+
     let nextCursor = null;
-    let data = results;
-    if (results.length > take) {
-      // 추가 항목이 있다면 다음 커서를 설정하고, 데이터 배열은 요청한 개수만 사용
-      nextCursor = results[take].id;
-      data = results.slice(0, take);
+    let data = formattedResults;
+    if (formattedResults.length > take) {
+      nextCursor = formattedResults[take].id;
+      data = formattedResults.slice(0, take);
     }
 
     res.json({ data, nextCursor });
@@ -54,7 +60,7 @@ const getTopBulletinBoard = async (req, res, next) => {
       orderBy: { like: "desc" },
       take: 3, // 상위 3개의 게시글만 선택
     });
-    res.json(data);
+    res.json(data.map(formatBulletinBoard));
   } catch (err) {
     next(err);
   }
@@ -76,7 +82,7 @@ const uploadBulletinBoard = async (req, res, next) => {
         userId: id,
       },
     });
-    res.json(data);
+    res.json(formatBulletinBoard(data));
   } catch (err) {
     next(err);
   }
@@ -95,7 +101,7 @@ const updateBulletinBoard = async (req, res, next) => {
     });
 
     console.log("게시글 수정 성공:", data);
-    res.status(200).json(data); // 수정된 데이터를 응답으로 보냄
+    res.status(200).json(formatBulletinBoard(data));
   } catch (err) {
     next(err);
   }
